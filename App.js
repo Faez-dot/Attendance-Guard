@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StatusBar, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import HomeScreen from './screens/HomeScreen';
 import CoursesScreen from './screens/CoursesScreen';
 import AddCourseScreen from './screens/AddCourseScreen';
@@ -61,11 +61,13 @@ export default function App() {
     content = <HomeScreen courses={courses} onNavigate={setScreen} />;
   }
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      {content}
-    </SafeAreaView>
+    return (
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <StatusBar barStyle="dark-content" />
+        {content}
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
